@@ -81,11 +81,11 @@ $(document).ready(() => {
       },
       A3: {
         Id: "7af448886f225658",
-        Value: "a = 10, b = 9"
+        Value: "a = 9, b = 9"
       },
       A4: {
         Id: "c14763af0c5da0df",
-        Value: "a = 9, b = 9"
+        Value: "a = 10, b = 9"
       }
     },
     {
