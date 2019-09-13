@@ -1,1 +1,0 @@
-$(".assignmentModal").modal("show");

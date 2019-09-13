@@ -5,6 +5,24 @@
 img {
   margin: 0em 1em 0.5em 0em;
 }
+code {
+  display: block;
+  margin: 2em 2em 2em 2em;
+  padding: 2em 2em 4em 2em;
+  background-color: black;
+}
+.choices {
+  width: 67%;
+  margin: auto;
+}
+.c-a {
+  float: right;
+  color: green;
+}
+.w-a {
+  float: right;
+  color: red;
+}
 @media (max-width: 575.98px) {
   .navbar-brand {
     width: 100%;
