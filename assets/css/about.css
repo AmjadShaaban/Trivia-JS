@@ -23,6 +23,13 @@ code {
   float: right;
   color: red;
 }
+.t-r {
+  float: right;
+  color: chartreuse;
+}
+.t-p {
+  float: right;
+}
 @media (max-width: 575.98px) {
   .navbar-brand {
     width: 100%;

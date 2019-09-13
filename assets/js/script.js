@@ -1,60 +1,68 @@
 $(document).ready(() => {
   const questions = [
     {
-      Q: { l1: "line 1", l2: '"1" - - "1";', l3: "" },
+      Q: { l1: '"1" - - "1";', l2: "", l3: "What is the result?" },
       A1: {
         Id: "420470b743cc5ded",
-        Value: "????PM????"
+        Value: "0"
       },
       A2: {
         Id: "2baf94cae39f2605",
-        Value: "????NO????"
+        Value: "11"
       },
       A3: {
         Id: "43b0321c3afb3c1c",
-        Value: "????Hi????"
+        Value: "2"
       },
       A4: {
         Id: "5f3823799ad4d2a2",
-        Value: "????AM????"
+        Value: '"11"'
       }
     },
     {
-      Q: { l1: "", l2: "String('Hello') === 'Hello';", l3: "" },
+      Q: {
+        l1: "String('Hello') === 'Hello';",
+        l2: "",
+        l3: "What is the result?"
+      },
       A1: {
         Id: "85cbfc06135bfb0b",
-        Value: "????PM????"
+        Value: "True"
       },
       A2: {
         Id: "955bcbfb95f9b418",
-        Value: "????NO????"
+        Value: "False"
       },
       A3: {
         Id: "8434faa9ccc1e11b",
-        Value: "????Hi????"
+        Value: "TypeError"
       },
       A4: {
         Id: "7328a063dac08627",
-        Value: "????AM????"
+        Value: "NaN"
       }
     },
     {
-      Q: { l1: "", l2: "(true + false) > 2 + true;", l3: "" },
+      Q: {
+        l1: "(true + false) > 2 + true;",
+        l2: "",
+        l3: "What is the result?"
+      },
       A1: {
         Id: "f71854db14e73545",
-        Value: "????PM????"
+        Value: "True"
       },
       A2: {
-        Id: "4b3e865c6a283ad5",
-        Value: "????NO????"
+        Id: "df55aa22bd7ea7f2",
+        Value: "False"
       },
       A3: {
         Id: "1f1a4b359681d4c0",
-        Value: "????Hi????"
+        Value: "TypeError"
       },
       A4: {
-        Id: "df55aa22bd7ea7f2",
-        Value: "????AM????"
+        Id: "4b3e865c6a283ad5",
+        Value: "NaN"
       }
     },
     {
@@ -64,16 +72,16 @@ $(document).ready(() => {
         l3: "What is the value of a & b?"
       },
       A1: {
-        Id: "7af448886f225658",
+        Id: "4a5d1efc659bc87c",
         Value: "a = 9, b = 0"
       },
       A2: {
         Id: "a56a0d8e1a3e8b36",
-        Value: "a = 10, b = 9"
+        Value: "a = 0, b = 9"
       },
       A3: {
-        Id: "4a5d1efc659bc87c",
-        Value: "a = 0, b = 9"
+        Id: "7af448886f225658",
+        Value: "a = 10, b = 9"
       },
       A4: {
         Id: "c14763af0c5da0df",
@@ -88,11 +96,11 @@ $(document).ready(() => {
       },
       A1: {
         Id: "0c2466c6b657d0ee",
-        Value: "a = 10, b = 11"
+        Value: "a = 11, b = 11"
       },
       A2: {
         Id: "158f69577e3e0fa2",
-        Value: "a = 11, b = 11"
+        Value: "a = 10, b = 11"
       },
       A3: {
         Id: "098b031bd43aedbd",
@@ -135,10 +143,10 @@ $(document).ready(() => {
 
       A1: {
         Id: "8fc8a862dd920e5e",
-        Value: "a = 10, b = 11"
+        Value: "a = 11, b = 0"
       },
       A2: {
-        Id: "db96363c44aa4af6",
+        Id: "2b48073cad8d8829",
         Value: "a = 11, b = 11"
       },
       A3: {
@@ -146,8 +154,8 @@ $(document).ready(() => {
         Value: "a = 0, b = 11"
       },
       A4: {
-        Id: "2b48073cad8d8829",
-        Value: "a = 11, b = 0"
+        Id: "db96363c44aa4af6",
+        Value: "a = 10, b = 11"
       }
     },
     {
@@ -165,12 +173,12 @@ $(document).ready(() => {
         Value: "<body>"
       },
       A3: {
-        Id: "de9a48cb99e9a936",
+        Id: "cb5a834f0380b2b8",
         Value: "<head> & <body>"
       },
       A4: {
-        Id: "cb5a834f0380b2b8",
-        Value: "Anywhere in HTML Doc."
+        Id: "de9a48cb99e9a936",
+        Value: "Anywhere in HTML"
       }
     },
     {
@@ -181,19 +189,19 @@ $(document).ready(() => {
       },
       A1: {
         Id: "b5909ad8c8cee52b",
-        Value: "call(411).Then({if(answered){ask for myFunction;});"
+        Value: "call function myFunction();"
       },
       A2: {
-        Id: "96bd00f0c2f9d673",
-        Value: "call function myFunction();"
+        Id: "1e7713aace897d9f",
+        Value: "myFunction();"
       },
       A3: {
         Id: "bcbc90ca0d3ba708",
         Value: "myFunction;"
       },
       A4: {
-        Id: "1e7713aace897d9f",
-        Value: "myFunction();"
+        Id: "96bd00f0c2f9d673",
+        Value: "call(411).Then({if(answered){ask for myFunction;});"
       }
     },
     {
@@ -220,84 +228,97 @@ $(document).ready(() => {
       }
     }
   ];
-  var qTime = 10;
+  var gamesPlayed = 0;
   var correct = 0;
   var wrong = 0;
-  //   var i = 0;
   var numberOfQuestions = questions.length - 1;
-  var theLooper = numberOfQuestions => {
-    console.log("B4 TO");
-    setTimeout(() => {
-      console.log("TO started");
-      $(".question-card").remove();
-      numberOfQuestions--;
-      if (numberOfQuestions >= 0) {
-        console.log(numberOfQuestions);
-        console.log("going again");
-        createQuestionCard(numberOfQuestions);
-        $(".choices").hover(
-          function() {
-            $(this).css("background-color", "lightgray");
-          },
-          function() {
-            $(this).css("background-color", "white");
-          }
-        );
-        var check = correct + wrong;
-        console.log(check);
-        $(".choices").on("click", function() {
-          console.log("clicked!");
-          if (
-            parseInt($(this).attr("id"), 16) ===
-            triviaKey[numberOfQuestions].Key
-          ) {
-            console.log("CORRECT!");
-            correct++;
-            clearTimeout(theLooper);
-            $(".question-card").remove();
-            $(".c-a").text(correct);
-            theLooper(numberOfQuestions);
-          } else {
-            console.log("WRONG!!!");
-            wrong++;
-            clearTimeout(theLooper);
-            $(".question-card").remove();
-            $(".w-a").text(wrong);
-            theLooper(numberOfQuestions);
-          }
-        });
-      }
-    }, qTime * 1000);
-  };
+  var secs = 29;
   var timeCounter = () => {
-    var secs = 30;
+    $(".choices").hover(
+      function() {
+        $(this).css("background-color", "lightgray");
+      },
+      function() {
+        $(this).css("background-color", "white");
+      }
+    );
+    $(".choices").on("click", function() {
+      console.log("clicked!");
+      if (
+        parseInt($(this).attr("id"), 16) === triviaKey[numberOfQuestions].Key
+      ) {
+        console.log("CORRECT!");
+        correct++;
+        $(".question-card").remove();
+        $(".c-a").text(correct);
+        numberOfQuestions--;
+        clearInterval(xxx);
+        secs = 29;
+        nextQ();
+      } else {
+        console.log("WRONG!!!");
+        wrong++;
+        $(".question-card").remove();
+        $(".w-a").text(wrong);
+        numberOfQuestions--;
+        clearInterval(xxx);
+        secs = 29;
+        nextQ();
+      }
+    });
     var xxx = setInterval(() => {
-      $(".t-p").text(secs);
+      $(".t-r").text(secs);
       secs--;
       if (secs < 0) {
+        wrong++;
         $(".question-card").remove();
+        $(".w-a").text(wrong);
+        numberOfQuestions--;
         clearInterval(xxx);
+        secs = 29;
+        nextQ();
       }
     }, 1000);
   };
   var startTrivia = () => {
     console.log("Starting!");
     var startCard = $("<div>"),
-      heading = $("<h1>"),
+      startHead = $("<h1>"),
       startBtn = $("<button>");
-    startCard.attr("class", "card question-card");
+    startCard.attr("class", "card question-card1");
     startBtn.attr("id", "start-button");
-    heading.text("Welcome to TriFia");
+    startHead.text("Click the button to Start");
     startBtn.text("START!");
-    heading.appendTo(startCard);
+    startHead.appendTo(startCard);
     startBtn.appendTo(startCard);
     startCard.appendTo($(".trivia-questions"));
     $("#start-button").on("click", function() {
-      theLooper(numberOfQuestions);
+      $(".question-card1").remove();
+      $(".question-card2").remove();
+      $(".c-a").text(correct);
+      $(".w-a").text(wrong);
+      nextQ();
     });
   };
   var nextQ = () => {
-    createQuestionCard(numberOfQuestions);
+    if (numberOfQuestions === -1) {
+      var endCard = $("<div>"),
+        endHead = $("<h1>");
+      endCard.attr("class", "card question-card2");
+      endHead.text("Game Over!, Go again?");
+      endHead.appendTo(endCard);
+      endCard.appendTo($(".trivia-questions"));
+      numberOfQuestions = questions.length - 1;
+      correct = 0;
+      wrong = 0;
+      gamesPlayed++;
+      $(".t-p").text(gamesPlayed);
+      startTrivia();
+    } else {
+      createQuestionCard(numberOfQuestions);
+      timeCounter();
+      console.log(numberOfQuestions);
+    }
   };
   /*
    *
@@ -349,32 +370,6 @@ $(document).ready(() => {
     cBox.appendTo(t);
     t.appendTo(qCard);
     qCard.appendTo($(".trivia-questions"));
-    $(".choices").hover(
-      function() {
-        $(this).css("background-color", "lightgray");
-      },
-      function() {
-        $(this).css("background-color", "white");
-      }
-    );
-    $(".choices").on("click", function() {
-      console.log("clicked!");
-      if (
-        parseInt($(this).attr("id"), 16) === triviaKey[numberOfQuestions].Key
-      ) {
-        console.log("CORRECT!");
-        correct++;
-        clearTimeout(theLooper);
-        $(".question-card").remove();
-        $(".c-a").text(correct);
-      } else {
-        console.log("WRONG!!!");
-        wrong++;
-        clearTimeout(theLooper);
-        $(".question-card").remove();
-        $(".w-a").text(wrong);
-      }
-    });
   };
   var triviaKey = [
     {
@@ -418,5 +413,5 @@ $(document).ready(() => {
       Img: ""
     }
   ];
-  nextQ();
+  startTrivia();
 });
