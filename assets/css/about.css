@@ -3,13 +3,24 @@
   margin-bottom: 84px;
 }
 img {
-  margin: 0em 1em 0.5em 0em;
+  max-width: 100%;
+  height: auto;
 }
 code {
   display: block;
   margin: 2em 2em 2em 2em;
-  padding: 2em 2em 4em 2em;
+  padding: 4em 4em 4em 4em;
   background-color: black;
+}
+button {
+  width: 30%;
+  align-self: center;
+}
+h3 {
+  align-self: center;
+}
+.trivia-msg {
+  align-self: center;
 }
 .choices {
   width: 67%;
@@ -25,9 +36,17 @@ code {
 }
 .t-r {
   float: right;
-  color: chartreuse;
+  color: cornflowerblue;
 }
 .t-p {
+  float: right;
+}
+.scores {
+  float: left;
+  width: 37%;
+}
+.msg-card {
+  width: 62.9%;
   float: right;
 }
 @media (max-width: 575.98px) {

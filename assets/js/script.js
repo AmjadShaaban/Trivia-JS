@@ -243,27 +243,46 @@ $(document).ready(() => {
       }
     );
     $(".choices").on("click", function() {
-      console.log("clicked!");
       if (
         parseInt($(this).attr("id"), 16) === triviaKey[numberOfQuestions].Key
       ) {
-        console.log("CORRECT!");
         correct++;
         $(".question-card").remove();
         $(".c-a").text(correct);
         numberOfQuestions--;
         clearInterval(xxx);
-        secs = 29;
-        nextQ();
+        $(".question-result").css("color", "green");
+        $(".question-result").text("CORRECT!");
+        $(".trivia-msg").text("Nice work!");
+        setTimeout(() => {
+          $(".question-result").text(" ");
+          $(".trivia-msg").text("");
+          $(".t-r").text("30");
+          secs = 29;
+          nextQ();
+        }, 3500);
       } else {
-        console.log("WRONG!!!");
         wrong++;
         $(".question-card").remove();
         $(".w-a").text(wrong);
         numberOfQuestions--;
         clearInterval(xxx);
-        secs = 29;
-        nextQ();
+        $(".question-result").css("color", "red");
+        $(".question-result").text("WRONG!");
+        $(".trivia-msg").text("Here is the correct answer:");
+        var imgDiv = $("<div>"),
+          img = $("<img>"),
+          target = $(".trivia-msg");
+        img.attr("src", triviaKey[numberOfQuestions + 1].Img);
+        img.appendTo(imgDiv);
+        imgDiv.appendTo(target);
+        setTimeout(() => {
+          $(".question-result").text(" ");
+          $(".trivia-msg").text("");
+          $(".t-r").text("30");
+          secs = 29;
+          nextQ();
+        }, 7000);
       }
     });
     var xxx = setInterval(() => {
@@ -275,19 +294,34 @@ $(document).ready(() => {
         $(".w-a").text(wrong);
         numberOfQuestions--;
         clearInterval(xxx);
-        secs = 29;
-        nextQ();
+        $(".question-result").css("color", "red");
+        $(".question-result").text("TIME'S UP!");
+        $(".trivia-msg").text("Here is the correct answer:");
+        var imgDiv = $("<div>"),
+          img = $("<img>"),
+          target = $(".trivia-msg");
+        img.attr("src", triviaKey[numberOfQuestions + 1].Img);
+        img.appendTo(imgDiv);
+        imgDiv.appendTo(target);
+        setTimeout(() => {
+          $(".question-result").text(" ");
+          $(".trivia-msg").text("");
+          $(".t-r").text("30");
+          secs = 29;
+          nextQ();
+        }, 7000);
       }
     }, 1000);
   };
   var startTrivia = () => {
-    console.log("Starting!");
     var startCard = $("<div>"),
-      startHead = $("<h1>"),
+      startHead = $("<h3>"),
       startBtn = $("<button>");
     startCard.attr("class", "card question-card1");
+    startBtn.attr("class", "btn btn-warning");
+    startBtn.attr("type", "button");
     startBtn.attr("id", "start-button");
-    startHead.text("Click the button to Start");
+    startHead.text("Click button to start");
     startBtn.text("START!");
     startHead.appendTo(startCard);
     startBtn.appendTo(startCard);
@@ -317,7 +351,6 @@ $(document).ready(() => {
     } else {
       createQuestionCard(numberOfQuestions);
       timeCounter();
-      console.log(numberOfQuestions);
     }
   };
   /*
@@ -374,43 +407,43 @@ $(document).ready(() => {
   var triviaKey = [
     {
       Key: 4877453493272263708,
-      Img: ""
+      Img: "./assets/images/4877453493272263708.png"
     },
     {
       Key: 9641076530341477131,
-      Img: ""
+      Img: "./assets/images/9641076530341477131.png"
     },
     {
       Key: 16092955909663139826,
-      Img: ""
+      Img: "./assets/images/16092955909663139826.png"
     },
     {
       Key: 8859786117761881688,
-      Img: ""
+      Img: "./assets/images/8859786117761881688.png"
     },
     {
       Key: 874937231265485038,
-      Img: ""
+      Img: "./assets/images/874937231265485038.png"
     },
     {
       Key: 3013591892425386459,
-      Img: ""
+      Img: "./assets/images/3013591892425386459.png"
     },
     {
       Key: 15822893973290765046,
-      Img: ""
+      Img: "./assets/images/15822893973290765046.png"
     },
     {
       Key: 14653168712987751096,
-      Img: ""
+      Img: "./assets/images/14653168712987751096.png"
     },
     {
       Key: 2195244967696891295,
-      Img: ""
+      Img: "./assets/images/2195244967696891295.png"
     },
     {
       Key: 159431449544537479,
-      Img: ""
+      Img: "./assets/images/159431449544537479.png"
     }
   ];
   startTrivia();
